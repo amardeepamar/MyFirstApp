@@ -6,18 +6,32 @@ namespace MyFirstApp.Controllers
     public class HomeController : Controller
     {
         // GET: Home/Index
+        [Route("Home/Index")] // This is Attribute Routing Example which is present in
+                              // routes.MapMvcAttributeRoutes() Method in RouteConfig.cs
+        [Route("")] // This is for By default Comes.
         public ActionResult Index()
         {
+            ViewBag.Message = "Index Action method of Home Page";
             return View();
         }
+        [Route("home/product")]
         public ActionResult Product()
         {
             return View("OurCompanyProduct");
         }
+        [Route("home/contact")]
         public ActionResult Contact()
         {
+            ViewBag.Message = "Welcome to Contact Us";
             return View();
         }
+        [Route("home/userprofile")]
+        public ActionResult Userprofile()
+        {
+            ViewBag.Message = "Welcome to User profile";
+            return View();
+        }
+        
         public ActionResult GetEmpName(int EmpId)
         {
             // Example of Content Result
@@ -38,14 +52,16 @@ namespace MyFirstApp.Controllers
             //return new ContentResult() { Content = matchEmpName, ContentType = "text/plain" };
             return Content(matchEmpName, "text/plain");
         }
-
+        [Route("home/getpayslip/{EmpId}")]
         public ActionResult GetPaySlip(int EmpId)
         {
-            // Example of File Result
-            string fileName = "~/PaySlip" + EmpId + ".pdf";
-            return File(fileName, "application/pdf");
+           
+                // Example of File Result
+                string fileName = "~/PaySlip" + EmpId + ".pdf";
+                return File(fileName, "application/pdf");
+            
         }
-
+        [Route("home/empfacebookpage")]
         public ActionResult EmpFacebookPage(int EmpId)
         {
             // Example of Redirect Result
@@ -73,7 +89,7 @@ namespace MyFirstApp.Controllers
             }
             return Redirect(fbUrl);
         }
-
+        [Route("home/studentdetails")]
         public ActionResult StudentDetails()
         {
             // This is Example of Razor Code Block also
@@ -85,5 +101,12 @@ namespace MyFirstApp.Controllers
             ViewBag.Subject = new List<string>() { "Maths", "Physics", "Chemistry" };
             return View();    
         }
+        [Route("home/about")]
+        public ActionResult About()
+        {
+            ViewBag.Message = "Welcome to About us.";
+            return View();
+        }
+       
     }
 }

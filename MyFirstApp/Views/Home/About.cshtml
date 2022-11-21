@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewBag.Title = "About";
+}
+
+<h2>About</h2>
+
+
+@{
+    ViewBag.ListTitle = "Product Details";
+    ViewBag.Items = new List<string>() { "Mobile", "Electronics", "Cloth" };
+    Html.RenderPartial("ListPartialView");
+}
+
